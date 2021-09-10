@@ -149,10 +149,10 @@
     </div>
     <div class="card-footer d-flex flex-row-reverse">
         <div class="p-2">
-            <button type="submit" class="btn btn-block btn-primary btn-sm">Salvar</button>
+            <button type="submit" class="btn btn-block btn-primary">Salvar</button>
         </div>
         <div class="p-2">
-            <a href="{{ route('servicos.index') }}" class="btn btn-block btn-danger btn-sm">Voltar</a>
+            <a href="{{ route('servicos.index') }}" class="btn btn-block btn-danger">Voltar</a>
         </div> 
     </div>
 </div>

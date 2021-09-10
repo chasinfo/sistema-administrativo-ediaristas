@@ -45,4 +45,38 @@ class ServicoRequest extends FormRequest
             'horas_outros' => ['required', 'integer']
         ];
     }
+
+    /**
+     * Substitui os valores antes da validação.
+     *
+     * @return void
+     */
+    function validationData()
+    {
+        $dados = $this->all();
+
+        $dados['valor_minimo']  = $this->formataValorMonetario($dados['valor_minimo']);
+        $dados['valor_quarto']  = $this->formataValorMonetario($dados['valor_quarto']);
+        $dados['valor_sala']    = $this->formataValorMonetario($dados['valor_sala']);
+        $dados['valor_banheiro'] = $this->formataValorMonetario($dados['valor_banheiro']);
+        $dados['valor_cozinha'] = $this->formataValorMonetario($dados['valor_cozinha']);
+        $dados['valor_quintal'] = $this->formataValorMonetario($dados['valor_quintal']);
+        $dados['valor_outros']  = $this->formataValorMonetario($dados['valor_outros']);
+
+        $this->replace($dados);
+
+        return $dados;
+    }
+    
+    /**
+     * Formata o valor do padrão brasileiro para o padrão internacional.
+     *
+     * @param string $valor
+     * @return string
+     */
+    private function formataValorMonetario(string $valor): float
+    {
+        return str_replace(['.',','], ['','.'], $valor);
+    }
+   
 }

@@ -53,7 +53,7 @@
                 {{$servicos->links()}}    
             </div>
             <div class="ml-auto p-2">
-                <a href="{{ route('servicos.create') }}" class="btn btn-block btn-primary btn-sm">Novo Serviço</a>
+                <a href="{{ route('servicos.create') }}" class="btn btn-block btn-primary">Novo Serviço</a>
             </div>
         </div>
 
