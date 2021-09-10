@@ -16,8 +16,8 @@
 @stop
 
 @section('content')
+    @include('_mensagens')
     <form action="{{ $urlForm }}" method="post">
-        @csrf
         @include('servicos._form')
     </form>
 @stop
@@ -26,6 +26,3 @@
 
 @stop
 
-@section('js')
-
-@stop
