@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,18 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'showLoginForm']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function() {
 
-// Rotas para trabalhar com o serviço
-Route::get('/servicos', [ServicoController::class, 'index'])->name('servicos.index');
-Route::get('/servicos/create', [ServicoController::class, 'create'])->name('servicos.create');
-Route::get('/servicos/edit/{id}', [ServicoController::class, 'edit'])->name('servicos.edit');
-Route::post('/servicos/store', [ServicoController::class, 'store'])->name('servicos.store');
-Route::put('/servicos/store/{id}', [ServicoController::class, 'update'])->name('servicos.update');
-Route::delete('/servicos/store', [ServicoController::class, 'delete'])->name('servicos.delete');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // Rotas para serviço
+    Route::get('/servicos', [ServicoController::class, 'index'])->name('servicos.index');
+    Route::get('/servicos/create', [ServicoController::class, 'create'])->name('servicos.create');
+    Route::get('/servicos/{servico}/edit', [ServicoController::class, 'edit'])->name('servicos.edit');
+    Route::post('/servicos/store', [ServicoController::class, 'store'])->name('servicos.store');
+    Route::put('/servicos/{servico}/store', [ServicoController::class, 'update'])->name('servicos.update');
+    Route::delete('/servicos/{servico}/store', [ServicoController::class, 'destroy'])->name('servicos.delete');
+
+    // Rotas para usuário
+    Route::resource('usuarios', UsuarioController::class);
+
+});

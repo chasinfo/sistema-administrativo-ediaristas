@@ -233,7 +233,13 @@ return [
                     'text' => 'Serviços',
                     'icon' => 'none',
                     'route'  => 'servicos.index',
-                ],                
+                ],
+                [
+                    'text' => 'Usuários',
+                    'icon' => 'none',
+                    'route'  => 'usuarios.index',
+                ],
+                
             ],
         ],
     ],

@@ -33,3 +33,10 @@ php artisan migrate
 ```
 php artisan serve
 ```
+
+#### Criar o usuário admin 
+```
+php artisan db:seed
+```
+Usuário criado é admin@admin.com
+Senha: 123456789

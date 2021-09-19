@@ -12,7 +12,7 @@ class ServicoController extends Controller
     
     public function index()
     {
-        $servicos   = Servico::paginate(env('PAGE_LIMIT'));
+        $servicos = Servico::paginate(env('PAGE_LIMIT'));
 
         return view('servicos.index')->with([
             'servicos'  => $servicos,
@@ -24,7 +24,7 @@ class ServicoController extends Controller
     {
         return view('servicos.create')->with([
             'titulo'        => $this->titulo,
-            'tituloCreate'  => "Cadastrar Serviços",
+            'tituloCreate'  => "Cadastrar Serviço",
             'urlForm' => route('servicos.store')
         ]);
     }
@@ -34,36 +34,36 @@ class ServicoController extends Controller
         $dados = $request->except('_token');
         Servico::create($dados);
         
-        return redirect()->route('servicos.index');
+        return redirect()->route('servicos.index')
+                         ->with('mensagem', 'Serviço criado com sucesso!!!');
     }
 
-    public function edit(int $id)
+    public function edit(Servico $servico)
     {
-        $servico = Servico::findOrFail($id);
-
         return view('servicos.edit')->with([
             'titulo'     => $this->titulo,
-            'tituloEdit' => "Alterar Serviços",
-            'urlForm'    => route('servicos.update', $id),
+            'tituloEdit' => "Alterar Serviço",
+            'urlForm'    => route('servicos.update', $servico),
             'servico'    => $servico
         ]);
     }
 
-    public function update(int $id, ServicoRequest $request)
+    public function update(Servico $servico, ServicoRequest $request)
     {
         $dados   = $request->except(['_token', '_method']);
-        $servico = Servico::findOrFail($id);
 
         $servico->update($dados);
 
-        return redirect()->route('servicos.index');
+        return redirect()->route('servicos.index')
+                         ->with('mensagem', 'Serviço atualizado com sucesso!!!');
         
     }
 
-    public function delete(Request $request)
+    public function destroy(Servico $servico)
     {
-        Servico::destroy($request['id_servico']);
+        Servico::destroy($servico->id);
         
-        return redirect()->route('servicos.index');
+        return redirect()->route('servicos.index')
+                         ->with('mensagem', 'Serviço excluído com sucesso!!!');
     }
 }

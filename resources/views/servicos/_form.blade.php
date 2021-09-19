@@ -15,9 +15,9 @@
                         <label for="icone">Ícone</label>
                         <select name="icone" id="icone" required class="form-control">
                             <option value="">Selecione um icone</option>
-                            <option value="twf-cleaning-1" {{ old('icone', isset($servico) && $servico->icone == "twf-cleaning-1") ? 'selected' : null }}>Icone 1</option>
-                            <option value="twf-cleaning-2" {{ old('icone', isset($servico) && $servico->icone == "twf-cleaning-2") ? 'selected' : null }}>Icone 2</option>
-                            <option value="twf-cleaning-3" {{ old('icone', isset($servico) && $servico->icone == "twf-cleaning-3") ? 'selected' : null }}>Icone 3</option>
+                            <option value="twf-cleaning-1" {{ old('icone', $servico->icone ?? null) == "twf-cleaning-1" ? 'selected' : null }}>Icone 1</option>
+                            <option value="twf-cleaning-2" {{ old('icone', $servico->icone ?? null) == "twf-cleaning-2" ? 'selected' : null }}>Icone 2</option>
+                            <option value="twf-cleaning-3" {{ old('icone', $servico->icone ?? null) == "twf-cleaning-3" ? 'selected' : null }}>Icone 3</option>
                         </select>
                     </div>
                 </div>

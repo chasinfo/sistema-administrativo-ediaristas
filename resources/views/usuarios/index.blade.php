@@ -23,28 +23,32 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>E-mail</th>
                         <th colspan="2"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($servicos as $servico)
+                    @forelse ($usuarios as $usuario)
                         <tr>
-                            <td>{{ $servico->id }}</td>
-                            <td>{{ $servico->nome }}</td>
-                            <td style="width: 49px"><a href="{{ route('servicos.edit', $servico) }}" class="btn btn-block btn-info btn-xs"><i class="fa fa-edit" title="Alterar"></i></a></td>
+                            <td>{{ $usuario->id }}</td>
+                            <td>{{ $usuario->name }}</td>
+                            <td>{{ $usuario->email }}</td>
                             <td style="width: 49px">
-                                <form action="{{ route('servicos.delete', $servico) }}" method="post">
+                                <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-block btn-info btn-xs"><i class="fa fa-edit" title="Alterar"></i></a>
+                            </td>
+                            <td style="width: 49px">
+                                <form action="{{ route('usuarios.destroy', $usuario) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-block btn-danger btn-xs" onclick="return confirm('Tem certeza que deseja excluir este registro?')">
                                         <i class="fa fa-eraser" title="Excluir"></i>
-                                    </button>                                    
+                                    </button>
                                 </form>
                             </td>
                         </tr>    
                     @empty
                         <tr>
-                            <td colspan="3" style="text-align: center">NENHUM REGISTRO FOI ENCONTRADO</td>
+                            <td colspan="4" style="text-align: center">NENHUM REGISTRO FOI ENCONTRADO</td>
                         </tr>    
                     @endforelse
                 </tbody>
@@ -52,10 +56,10 @@
         </div>
         <div class="card-footer d-flex">
             <div class="p-2">
-                {{$servicos->links()}}    
+                {{$usuarios->links()}}    
             </div>
             <div class="ml-auto p-2">
-                <a href="{{ route('servicos.create') }}" class="btn btn-block btn-primary">Novo Serviço</a>
+                <a href="{{ route('usuarios.create') }}" class="btn btn-block btn-primary">Novo Serviço</a>
             </div>
         </div>
 
